@@ -6,16 +6,17 @@
 
 html, body {
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .main {
     width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%), url('./1.jpeg');
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%), url("{{ request.url_for('static', path='templates/1.jpeg') }}");
     background-position: center;
     background-size: cover;
-    height: 100vh;
-    padding-top: 80px; 
+    min-height: calc(100vh - 80px);
+    padding-top: 80px;
 }
 
 .navbar {
@@ -55,11 +56,19 @@ html, body {
     font-weight: bold;
 }
 
+.menu{
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .menu ul {
     display: flex;
     list-style: none;
     gap: 30px;
 }
+
 .menu ul li a {
     color: white;
     text-decoration: none;
@@ -73,36 +82,37 @@ html, body {
     text-shadow: 0 0 10px #00d4ff;
 }
 .search{
-    width:330px;
-    float:left;
-    margin-left: 270px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
 }
 .srch{
     font-family: 'times new roman', times, serif;
-    width: 150px;
-    height: 30px;
+    width: 180px;
+    height: 36px;
     background: transparent;
     border: 1px solid #00d4ff;
-    margin-top: 13px;
     color: white;
     border-right: none;
     font-size: 16px;
-    float: left;
-    padding: 10px;
+    padding: 8px 10px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
 }
 .btn{
     width: 100px;
-    height: 40px;
+    height: 36px;
     background: #00d4ff;
     border: 2px solid #00d4ff;
-    margin-top: 13px;
     color: white;
     font-size: 15px;
     cursor: pointer;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .btn:focus{
     outline: none;
@@ -111,9 +121,10 @@ html, body {
     outline: none;
 }
 .content{
-    width: 1200px;
+    max-width: 1200px;
+    width: calc(100% - 40px);
     height: auto;
-    margin: auto;
+    margin: 0 auto;
     color: white;
     position: relative;
 }
@@ -156,13 +167,14 @@ html, body {
 }
 .form{
     width: 250px;
-    height: 380px;
+    height: auto;
     background: linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%);
     position: absolute;
-    top: 20px;
+    top: 120px;
     right: 40px;
     border-radius: 10px;
-    padding: 25px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
 }
 .form h2{
     width: 220px;
@@ -256,4 +268,32 @@ html, body {
 .icons ion-icon:hover{
     color: #00d4ff;
     text-shadow: 0 0 10px #00d4ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+    .logo {
+        font-size: 22px;
+    }
+    .icon h2{
+        font-size: 26px;
+    }
+    .menu ul {
+        gap: 18px;
+    }
+    .srch{ width: 140px; }
+}
+
+@media (max-width: 800px) {
+    .navbar{ padding: 0 16px; }
+    .menu{ display: none; }
+    .form{ position: static; width: 100%; max-width: 320px; margin: 20px auto; right: auto; top: auto; }
+    .content h1{ font-size: 32px; margin-top: 14%; }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 18px; }
+    .icon h2{ font-size: 20px; }
+    .srch{ width: 110px; }
+    .btn{ width: 72px; height: 32px; }
 }
