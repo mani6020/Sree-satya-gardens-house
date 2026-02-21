@@ -1,299 +1,48 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* custom styles for Sree Satya Garden House site */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html, body {
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
+/* header hero text color override */
+header h1,
+header p {
+  color: black;
 }
 
-.main {
-    width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%), url("{{ request.url_for('static', path='templates/1.jpeg') }}");
-    background-position: center;
-    background-size: cover;
-    min-height: calc(100vh - 80px);
-    padding-top: 80px;
+/* custom button color */
+.btn-primary {
+  background-color: #006c4c;
+  border-color: #006c4c;
+}
+.btn-primary:hover {
+  background-color: #005a3a;
+  border-color: #005a3a;
 }
 
-.navbar {
-    width: 100%;
-    height: 80px;
-    background: rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
-    position: fixed;
-    top: 0;
-    z-index: 100;
+/* dark footer slightly lighter than pure black */
+footer {
+  background-color: #222;
 }
 
-.icon {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+/* small tweaks for login section icons */
+.fab {
+  opacity: 0.8;
+}
+.fab:hover {
+  opacity: 1;
 }
 
-.logo-img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
+/* utility helpers not provided by Bootstrap */
+.text-white a {
+  text-decoration: underline;
 }
 
-.logo {
-    color: #00d4ff;
-    font-size: 24px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-.icon h2 {
-    color: #00d4ff;
-    font-size: 35px;
-    font-weight: bold;
+/* responsive hero height on small screens */
+@media (max-width: 576px) {
+  header {
+    height: 50vh;
+    background-position: top;
+  }
 }
 
-.menu{
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.menu ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-.menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.menu ul li a:hover {
-    color: #00d4ff;
-    text-shadow: 0 0 10px #00d4ff;
-}
-.search{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 0 0 auto;
-}
-.srch{
-    font-family: 'times new roman', times, serif;
-    width: 180px;
-    height: 36px;
-    background: transparent;
-    border: 1px solid #00d4ff;
-    color: white;
-    border-right: none;
-    font-size: 16px;
-    padding: 8px 10px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-}
-.btn{
-    width: 100px;
-    height: 36px;
-    background: #00d4ff;
-    border: 2px solid #00d4ff;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.btn:focus{
-    outline: none;
-}
-.srch:focus{
-    outline: none;
-}
-.content{
-    max-width: 1200px;
-    width: calc(100% - 40px);
-    height: auto;
-    margin: 0 auto;
-    color: white;
-    position: relative;
-}
-.content .par{
-    padding-left: 20px;
-    padding-bottom: 25px;
-    font-family:'times new roman', times, serif;
-    letter-spacing: 1.2px;
-    line-height: 30px;
-}
-.content h1{
-    font-family: 'times new roman', times, serif;
-    font-size: 50px;
-    padding-left: 20px;
-    margin-top: 9%;
-    letter-spacing: 2px;
-}
-.content a{
-    width: 160px;
-    height: 40px;
-    background: #00d4ff;
-    border: none;
-    margin-bottom: 10px;
-    margin-left: 20px;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.content .cn a{
-    text-decoration: none;
-    color: black;
-    transition: .3s ease;
-}
-.cn:hover{
-    background-color: #fff;
-}
-.content span{
-    color: #00d4ff;
-    font-size: 60px;
-}
-.form{
-    width: 250px;
-    height: auto;
-    background: linear-gradient(to top, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 50%);
-    position: absolute;
-    top: 120px;
-    right: 40px;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-}
-.form h2{
-    width: 220px;
-    font-family: sans-serif;
-    text-align: center;
-    color: #00d4ff;
-    font-size: 22px;
-    background-color: white;
-    border-radius: 10px;
-    margin: 2px;
-    padding: 8px;
-}
-
-.form input{
-    width: 240px;
-    height: 35px;
-    background: transparent;
-    border-bottom: 1px solid #00d4ff;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    color: #fff;
-    font-size: 15px;
-    letter-spacing: 1px;
-    margin-top: 30px;
-    font-family: sans-serif;
-}
-.form input:focus{
-    outline: none;
-}
-
-::placeholder{
-    color: #fff;
-    font-family: 'times new roman', times, serif;
-}
-
-.btnn{
-    width: 240px;
-    height: 40px;
-    background: #00d4ff;
-    border: none;
-    margin-top: 30px;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    color: #fff;
-    transition: 0.4s ease;
-}
-
-.btnn:hover{
-    background: #fff;
-    color: #00d4ff;
-}
-
-.btnn a{
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-}
-
-.form .link{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 17px;
-    padding-top: 20px;
-    text-align: center;
-}
-
-.form .link a{
-    text-decoration: none;
-    color: #00d4ff;
-}
-
-.liw{
-    padding-top: 15px;
-    padding-bottom: 10px;
-    text-align: center;
-}
-
-.icons a{
-    text-decoration: none;
-    color: white;
-}
-.icons ion-icon{
-    color: white;
-    font-size: 30px;
-    padding-left: 14px;
-    padding-top: 5px;
-    transition: 0.3s ease;
-}
-
-.icons ion-icon:hover{
-    color: #00d4ff;
-    text-shadow: 0 0 10px #00d4ff;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1000px) {
-    .logo {
-        font-size: 22px;
-    }
-    .icon h2{
-        font-size: 26px;
-    }
-    .menu ul {
-        gap: 18px;
-    }
-    .srch{ width: 140px; }
-}
-
-@media (max-width: 800px) {
-    .navbar{ padding: 0 16px; }
-    .menu{ display: none; }
-    .form{ position: static; width: 100%; max-width: 320px; margin: 20px auto; right: auto; top: auto; }
-    .content h1{ font-size: 32px; margin-top: 14%; }
-}
-
-@media (max-width: 480px) {
-    .logo { font-size: 18px; }
-    .icon h2{ font-size: 20px; }
-    .srch{ width: 110px; }
-    .btn{ width: 72px; height: 32px; }
-}
