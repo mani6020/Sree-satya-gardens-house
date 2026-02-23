@@ -1,14 +1,181 @@
-/* Location/Map Section Styling */
-#location {
-  background-color: #f9f9f9;
+/* custom styles for Sree Satya Garden House site */
+
+* {
+  scroll-behavior: smooth;
 }
 
-#location h2 {
-  font-size: 2.5rem;
-  color: #333;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== NAVBAR STYLING ===== */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(33, 37, 41, 0.95) !important;
+  padding: 0.5rem 0;
+}
+
+.navbar-logo {
+  height: 50px;
+  width: auto;
+  border-radius: 50%;
+}
+
+.brand-text {
   font-weight: bold;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.nav-link {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #fff !important;
+}
+
+.nav-link:hover {
+  color: #ffc107 !important;
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  color: #ffc107 !important;
+  border-bottom: 2px solid #ffc107;
+}
+
+/* ===== HEADER/HERO ===== */
+header h1,
+header p {
+  color: #000;
+  text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.7);
+}
+
+header h1 {
+  font-weight: bold;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* ===== SECTIONS STYLING ===== */
+section {
+  position: relative;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
   margin-bottom: 2rem;
   text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #006c4c 0%, #ffc107 100%);
+  border-radius: 2px;
+}
+
+/* ===== ABOUT SECTION ===== */
+#about {
+  background-color: #fafafa;
+}
+
+#about h3 {
+  color: #006c4c;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+#about h4 {
+  color: #005a3a;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.about-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.about-list li {
+  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+  color: #555;
+}
+
+.about-list i {
+  margin-right: 0.8rem;
+  font-size: 1.2rem;
+}
+
+#about img {
+  margin-bottom: 2rem;
+}
+
+/* ===== SERVICES SECTION ===== */
+#services {
+  background-color: #f0f8f5;
+}
+
+.service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 108, 76, 0.2);
+}
+
+.service-icon {
+  font-size: 3rem;
+  color: #006c4c;
+  margin-bottom: 1rem;
+}
+
+.service-card h4 {
+  color: #333;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ===== LOCATION SECTION ===== */
+#location {
+  background-color: #fafafa;
 }
 
 .location-info {
@@ -42,6 +209,16 @@
   margin-bottom: 0.5rem;
 }
 
+.location-info a {
+  text-decoration: none;
+  color: #006c4c;
+  font-weight: 600;
+}
+
+.location-info a:hover {
+  color: #ffc107;
+}
+
 .gmap-iframe {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -49,26 +226,232 @@
   height: 400px;
 }
 
-/* Responsive Design for Location Section */
+/* ===== BOOKING SECTION ===== */
+#booking {
+  background: linear-gradient(135deg, #006c4c 0%, #005a3a 100%);
+}
+
+#booking .section-title {
+  color: #fff;
+}
+
+#booking .section-title:after {
+  background: linear-gradient(90deg, #ffc107 0%, #fff 100%);
+}
+
+.booking-form .form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.booking-form .form-control,
+.booking-form .form-select {
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.booking-form .form-control:focus,
+.booking-form .form-select:focus {
+  background-color: white;
+  border-color: #006c4c;
+  box-shadow: 0 0 0 0.2rem rgba(0, 108, 76, 0.25);
+}
+
+.booking-form textarea.form-control {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.booking-form .btn-success {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 12px 30px;
+  transition: all 0.3s ease;
+}
+
+.booking-form .btn-success:hover {
+  background-color: #ffb300;
+  border-color: #ffb300;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.booking-form .form-check-label {
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+/* ===== CONTACT SECTION ===== */
+#contact {
+  background-color: #fafafa;
+}
+
+.contact-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 108, 76, 0.2);
+}
+
+.contact-icon {
+  font-size: 2.5rem;
+  color: #006c4c;
+  margin-bottom: 1rem;
+}
+
+.contact-card h4 {
+  color: #333;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+  color: #666;
+}
+
+.contact-card a {
+  text-decoration: none;
+  color: #006c4c;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contact-card a:hover {
+  color: #ffc107;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #006c4c;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  background-color: #ffc107;
+  color: #333;
+  transform: scale(1.1) translateY(-3px);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: #1a1a1a;
+  border-top: 3px solid #006c4c;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  color: #ffc107;
+}
+
+/* ===== BUTTON STYLING ===== */
+.btn-primary {
+  background-color: #006c4c;
+  border-color: #006c4c;
+}
+
+.btn-primary:hover {
+  background-color: #005a3a;
+  border-color: #005a3a;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #218838;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-  .location-info {
-    margin-bottom: 1.5rem;
-  }
-  
-  #location h2 {
+  header h1 {
     font-size: 2rem;
   }
-  
+
+  header p {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .navbar-logo {
+    height: 40px;
+  }
+
+  .brand-text {
+    font-size: 1.1rem;
+  }
+
+  .nav-link {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0.5rem 0;
+  }
+
   .gmap-iframe {
-    height: 300px;
+    height: 300px !important;
+  }
+
+  #about img {
+    margin-bottom: 1.5rem;
+  }
+
+  .social-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
   }
 }
 
-/* Additional styling for better appearance */
-#location .row {
-  align-items: center;
-}
+@media (max-width: 576px) {
+  header {
+    height: 60vh !important;
+  }
 
-.location-info p {
-  margin: 0.5rem 0;
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  header p {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .booking-form .col-md-6,
+  .booking-form .col-md-12 {
+    margin-bottom: 1rem;
+  }
 }
