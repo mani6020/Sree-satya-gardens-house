@@ -19,9 +19,14 @@
 </head>
 <body>
   <!-- navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Sree Satya Garden House</a>
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center" href="#home">
+        <img src="logo.png" alt="Sree Satya Garden House Logo" class="navbar-logo me-2" />
+        <span class="brand-text">Sree Satya Garden House</span>
+      </a>
+      
       <button
         class="navbar-toggler"
         type="button"
@@ -36,20 +41,20 @@
 
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
           <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#design">Design</a></li>
           <li class="nav-item"><a class="nav-link" href="#location">Location</a></li>
+          <li class="nav-item"><a class="nav-link" href="#booking">Booking</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
         </ul>
-        <a class="btn btn-primary ms-lg-3" href="#">Book Now</a>
+        <a class="btn btn-primary ms-lg-3" href="#booking">Book Now</a>
       </div>
     </div>
   </nav>
 
   <!-- hero/banner -->
-  <header
+  <header id="home"
     class="bg-light text-white text-center"
     style="background: url('1.jpeg') center/cover no-repeat; height: 80vh;"
   >
@@ -59,11 +64,11 @@
         <p class="lead">
           Sree Satya Garden House is a peaceful and spacious 3-bedroom garden villa located near Rajahmundry. Surrounded by lush greenery, fruit trees, and flowering plants, our property offers the perfect blend of comfort and nature.
 
-Designed for comfort, privacy, and relaxation, our duplex home combines modern amenities with the beauty of nature — giving you a refreshing stay experience close to the city yet away from the noise.<br>
+Designed for comfort, privacy, and relaxation, our duplex home combines modern amenities with the beauty of nature — giving you a refreshing stay experience close to the city yet away from the noise.
 
 📍 Ideal for families, parties, and corporate stays.
         </p>
-        <a href="#" class="btn btn-lg btn-success">Book Now</a>
+        <a href="#booking" class="btn btn-lg btn-success">Book Now</a>
       </div>
     </div>
   </header>
@@ -71,66 +76,90 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
   <!-- about section -->
   <section id="about" class="py-5">
     <div class="container">
-      <h2>About Us</h2>
-      <p>Sree Satya Garden House
+      <h2 class="section-title">About Us</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="about.jpg" alt="Sree Satya Garden House" class="img-fluid rounded shadow" />
+        </div>
+        <div class="col-md-6">
+          <h3>Welcome to Sree Satya Garden House</h3>
+          <p>A peaceful and premium garden stay located in Rajahmundry, designed for families, corporate guests, and private gatherings.</p>
+          
+          <p>Surrounded by lush greenery, fruit trees, and flowering plants, our spacious 3-bedroom duplex offers the perfect balance of comfort, privacy, and natural beauty.</p>
 
-Welcome to Sree Satya Garden House, a peaceful and premium garden stay located in Rajahmundry, designed for families, corporate guests, and private gatherings.
+          <h4 class="mt-4">🏡 What Makes Us Special</h4>
+          <ul class="about-list">
+            <li><i class="fas fa-check-circle text-success"></i> Spacious 3 Bedroom Duplex</li>
+            <li><i class="fas fa-check-circle text-success"></i> Large Private Garden with Fruit & Flowering Trees</li>
+            <li><i class="fas fa-check-circle text-success"></i> Elegant Living Hall & Modern Kitchen</li>
+            <li><i class="fas fa-check-circle text-success"></i> Dedicated Pooja Room with Lord Krishna</li>
+            <li><i class="fas fa-check-circle text-success"></i> Safe & Peaceful Location</li>
+            <li><i class="fas fa-check-circle text-success"></i> Ample Parking Space</li>
+            <li><i class="fas fa-check-circle text-success"></i> Ideal for Monthly Corporate Stays</li>
+          </ul>
 
-Surrounded by lush greenery, fruit trees, and flowering plants, our spacious 3-bedroom duplex offers the perfect balance of comfort, privacy, and natural beauty. We created this garden house with a simple mission: to provide a serene escape without compromising on modern comforts.
-
-Whether you are planning a family get-together, a weekend retreat, a small celebration, or a long-term corporate stay, Sree Satya Garden House offers a secure and welcoming environment for every guest.<br>
-
-🏡 What Makes Us Special<br>
-
-Spacious 3 Bedroom Duplex<br>
-
-Large Private Garden with Fruit & Flowering Trees <br>
-
-Elegant Living Hall & Modern Kitchen<br>
-
-Dedicated Pooja Room with Lord Krishna<br>
-
-Safe & Peaceful Location<br>
-
-Ample Parking Space<br>
-
-Ideal for Monthly Corporate Stays<br>
-
-We believe a stay is not just about accommodation — it is about experience. From morning freshness in the garden to peaceful evenings under the open sky, every moment here is designed to offer relaxation and rejuvenation.<br>
-
-🌿 Our Commitment<br>
-
-At Sree Satya Garden House, we focus on:<br>
-
-✔ Cleanliness<br>
-✔ Privacy<br>
-✔ Safety<br>
-✔ Comfortable Long Stays<br>
-✔ Personalized Hospitality<br>
-
-Our goal is to make every guest feel at home while enjoying the beauty of nature.<br>
-
-📍 Located in Rajahmundry<br>
-📞 For bookings and enquiries, please contact us directly.
-      </p>
+          <h4 class="mt-4">🌿 Our Commitment</h4>
+          <ul class="about-list">
+            <li><i class="fas fa-check text-success"></i> Cleanliness</li>
+            <li><i class="fas fa-check text-success"></i> Privacy</li>
+            <li><i class="fas fa-check text-success"></i> Safety</li>
+            <li><i class="fas fa-check text-success"></i> Comfortable Long Stays</li>
+            <li><i class="fas fa-check text-success"></i> Personalized Hospitality</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- services placeholder -->
+  <!-- services section -->
   <section id="services" class="py-5 bg-light">
     <div class="container">
-      <h2>Services</h2>
-      <p>We are providing a guest house.
-        Functions, birthday parties, kitty parties.
-        ALL TYPE OF FUNCTIONS ARE CAN BE DO HERE.
-      </p>
+      <h2 class="section-title text-center">Our Services</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <h4>Guest House</h4>
+            <p>Comfortable and spacious accommodations perfect for families and corporate guests looking for a serene getaway.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-birthday-cake"></i>
+            </div>
+            <h4>Birthday Parties</h4>
+            <p>Celebrate your special day in our beautiful garden space with dedicated arrangements and amenities.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-wine-glass-alt"></i>
+            </div>
+            <h4>Kitty Parties</h4>
+            <p>Perfect venue for kitty parties and social gatherings with privacy and comfortable facilities.</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="fas fa-ring"></i>
+            </div>
+            <h4>Functions & Events</h4>
+            <p>All types of functions and celebrations are welcome at our beautiful garden venue.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Location/Map section -->
   <section id="location" class="py-5">
     <div class="container">
-      <h2 class="mb-4">Our Location</h2>
+      <h2 class="section-title text-center">Our Location</h2>
       <div class="row">
         <div class="col-md-6 mb-4">
           <div class="location-info">
@@ -143,7 +172,10 @@ Our goal is to make every guest feel at home while enjoying the beauty of nature
               Rajamahendravaram, Andhra Pradesh 533106
             </p>
             <p class="mt-3">
-              <strong>📞 Contact:</strong> 9440048833
+              <strong>📞 Contact:</strong> <a href="tel:9440048833" class="text-dark">9440048833</a>
+            </p>
+            <p class="mt-2">
+              <strong>📧 Email:</strong> <a href="mailto:info@sreesatyagardenhouse.com" class="text-dark">info@sreesatyagardenhouse.com</a>
             </p>
           </div>
         </div>
@@ -163,59 +195,196 @@ Our goal is to make every guest feel at home while enjoying the beauty of nature
     </div>
   </section>
 
-  <!-- contact placeholder -->
-  <section id="contact" class="py-5 bg-light">
+  <!-- Booking Form Section -->
+  <section id="booking" class="py-5 bg-primary text-white">
     <div class="container">
-      <h2>Contact Us</h2>
-      <p>Contact: 9440048833</p>
+      <h2 class="section-title text-center text-white">Book Your Stay</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="booking-form">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Full Name *</label>
+                <input type="text" class="form-control" id="name" name="name" required />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email Address *</label>
+                <input type="email" class="form-control" id="email" name="email" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label">Phone Number *</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="people" class="form-label">Number of Guests *</label>
+                <input type="number" class="form-control" id="people" name="guests" min="1" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="checkin" class="form-label">Check-in Date *</label>
+                <input type="date" class="form-control" id="checkin" name="checkin" required />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="checkout" class="form-label">Check-out Date *</label>
+                <input type="date" class="form-control" id="checkout" name="checkout" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label for="roomtype" class="form-label">Room Type *</label>
+                <select class="form-select" id="roomtype" name="roomtype" required>
+                  <option value="">Select Room Type</option>
+                  <option value="Full Villa">Full Villa (3 Bedrooms)</option>
+                  <option value="1 Bedroom">1 Bedroom</option>
+                  <option value="2 Bedrooms">2 Bedrooms</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label for="purpose" class="form-label">Purpose of Stay *</label>
+                <select class="form-select" id="purpose" name="purpose" required>
+                  <option value="">Select Purpose</option>
+                  <option value="Family Vacation">Family Vacation</option>
+                  <option value="Corporate Stay">Corporate Stay</option>
+                  <option value="Birthday Party">Birthday Party</option>
+                  <option value="Wedding Function">Wedding Function</option>
+                  <option value="Others">Others</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label">Special Requests or Message</label>
+              <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell us any special requirements..."></textarea>
+            </div>
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="terms" name="terms" required />
+              <label class="form-check-label" for="terms">
+                I agree to the terms and conditions *
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-lg w-100">
+              <i class="fas fa-paper-plane me-2"></i>Submit Booking Request
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- login form (optional) -->
-  <section class="py-5 bg-secondary text-white">
+  <!-- contact section -->
+  <section id="contact" class="py-5 bg-light">
     <div class="container">
-      <h2 class="mb-4">Login Here</h2>
-      <form class="row g-3">
-        <div class="col-md-6">
-          <input
-            type="email"
-            class="form-control"
-            placeholder="Enter Email Here"
-          />
+      <h2 class="section-title text-center">Contact Us</h2>
+      <div class="row">
+        <div class="col-md-4 text-center mb-4">
+          <div class="contact-card">
+            <i class="fas fa-phone-alt contact-icon"></i>
+            <h4>Phone</h4>
+            <p><a href="tel:9440048833">9440048833</a></p>
+          </div>
         </div>
-        <div class="col-md-6">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Enter Password Here"
-          />
+        <div class="col-md-4 text-center mb-4">
+          <div class="contact-card">
+            <i class="fas fa-envelope contact-icon"></i>
+            <h4>Email</h4>
+            <p><a href="mailto:info@sreesatyagardenhouse.com">info@sreesatyagardenhouse.com</a></p>
+          </div>
         </div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Login</button>
+        <div class="col-md-4 text-center mb-4">
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <h4>Address</h4>
+            <p>Rajamahendravaram, AP 533106</p>
+          </div>
         </div>
-      </form>
-      <p class="mt-3">
-        Don't have an account? <a href="#" class="text-white">Sign up</a>
-      </p>
-      <p>Log in with</p>
-      <div class="d-flex gap-3">
-        <a href="#" class="text-white"><i class="fab fa-facebook fa-2x"></i></a>
-        <a href="#" class="text-white"><i class="fab fa-twitter fa-2x"></i></a>
-        <a href="#" class="text-white"><i class="fab fa-google fa-2x"></i></a>
-        <a href="#" class="text-white"><i class="fab fa-instagram fa-2x"></i></a>
-        <a href="#" class="text-white"><i class="fab fa-skype fa-2x"></i></a>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <h4 class="text-center mb-4">Connect With Us</h4>
+          <div class="d-flex justify-content-center gap-4">
+            <a href="https://www.facebook.com" class="social-icon" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com" class="social-icon" target="_blank">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.whatsapp.com" class="social-icon" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://www.youtube.com" class="social-icon" target="_blank">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- footer -->
-  <footer class="bg-dark text-center text-white py-3">
+  <footer class="bg-dark text-center text-white py-4">
     <div class="container">
-      <p class="mb-0">&copy; 2026 Sree Satya Garden House</p>
+      <p class="mb-2">&copy; 2026 Sree Satya Garden House. All Rights Reserved.</p>
+      <p class="small mb-0">Made with <i class="fas fa-heart text-danger"></i> for your comfort and relaxation</p>
     </div>
   </footer>
 
   <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Smooth scrolling script -->
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Close mobile menu if open
+          const navbarToggler = document.querySelector('.navbar-toggler');
+          if (navbarToggler.offsetParent !== null) {
+            navbarToggler.click();
+          }
+        }
+      });
+    });
+
+    // Active nav link on scroll
+    window.addEventListener('scroll', function() {
+      let current = '';
+      const sections = document.querySelectorAll('section');
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
