@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sree Satya Garden House</title>
+  <title>SREE SATYA GARDEN HOUSE</title>
 
   <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     rel="stylesheet"
   />
-  <!-- optional icon set -->
+  <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
+  <!-- Flatpickr for date picker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -23,7 +26,7 @@
     <div class="container">
       <!-- Logo -->
       <a class="navbar-brand d-flex align-items-center" href="#home">
-        <img src="logo.png" alt="Sree Satya Garden House Logo" class="navbar-logo me-2" />
+        <i class="fas fa-leaf text-success me-2" style="font-size: 2rem;"></i>
         <span class="brand-text">Sree Satya Garden House</span>
       </a>
       
@@ -79,7 +82,7 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
       <h2 class="section-title">About Us</h2>
       <div class="row">
         <div class="col-md-6">
-          <img src="about.jpg" alt="Sree Satya Garden House" class="img-fluid rounded shadow" />
+          <img src="about.jpg" alt="Sree Satya Garden House" class="img-fluid rounded shadow" onerror="this.src='https://via.placeholder.com/400x300?text=Sree+Satya+Garden+House'" />
         </div>
         <div class="col-md-6">
           <h3>Welcome to Sree Satya Garden House</h3>
@@ -172,10 +175,10 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
               Rajamahendravaram, Andhra Pradesh 533106
             </p>
             <p class="mt-3">
-              <strong>📞 Contact:</strong> <a href="tel:9440048833" class="text-dark">9440048833</a>
+              <strong>📞 Contact:</strong> <a href="tel:9440048833">9440048833</a>
             </p>
             <p class="mt-2">
-              <strong>📧 Email:</strong> <a href="mailto:info@sreesatyagardenhouse.com" class="text-dark">info@sreesatyagardenhouse.com</a>
+              <strong>📧 Email:</strong> <a href="mailto:info@sreesatyagardenhouse.com">info@sreesatyagardenhouse.com</a>
             </p>
           </div>
         </div>
@@ -200,83 +203,108 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
     <div class="container">
       <h2 class="section-title text-center text-white">Book Your Stay</h2>
       <div class="row justify-content-center">
-        <div class="col-md-8">
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="booking-form">
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="name" class="form-label">Full Name *</label>
-                <input type="text" class="form-control" id="name" name="name" required />
+        <div class="col-md-10">
+          <!-- Booking Form -->
+          <div class="booking-form-container">
+            <form id="bookingForm" class="booking-form">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="name" class="form-label">Full Name *</label>
+                  <input type="text" class="form-control" id="name" name="name" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">Email Address *</label>
+                  <input type="email" class="form-control" id="email" name="email" required />
+                </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="email" class="form-label">Email Address *</label>
-                <input type="email" class="form-control" id="email" name="email" required />
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="phone" class="form-label">Phone Number *</label>
-                <input type="tel" class="form-control" id="phone" name="phone" required />
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="phone" class="form-label">Phone Number *</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="10-digit number" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="people" class="form-label">Number of Guests *</label>
+                  <input type="number" class="form-control" id="people" name="guests" min="1" max="20" required />
+                </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="people" class="form-label">Number of Guests *</label>
-                <input type="number" class="form-control" id="people" name="guests" min="1" required />
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="checkin" class="form-label">Check-in Date *</label>
+                  <input type="text" class="form-control" id="checkin" name="checkin" placeholder="Select date" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="checkout" class="form-label">Check-out Date *</label>
+                  <input type="text" class="form-control" id="checkout" name="checkout" placeholder="Select date" required />
+                </div>
               </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="checkin" class="form-label">Check-in Date *</label>
-                <input type="date" class="form-control" id="checkin" name="checkin" required />
+              <div class="alert alert-info" id="availabilityAlert" style="display:none;">
+                <i class="fas fa-info-circle"></i> <strong>Availability Status:</strong> <span id="availabilityText"></span>
               </div>
-              <div class="col-md-6 mb-3">
-                <label for="checkout" class="form-label">Check-out Date *</label>
-                <input type="date" class="form-control" id="checkout" name="checkout" required />
+
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <label for="roomtype" class="form-label">Room Type *</label>
+                  <select class="form-select" id="roomtype" name="roomtype" required>
+                    <option value="">Select Room Type</option>
+                    <option value="Full Villa (3 Bedrooms)">Full Villa (3 Bedrooms) - ₹5,000/day</option>
+                    <option value="1 Bedroom">1 Bedroom - ₹1,500/day</option>
+                    <option value="2 Bedrooms">2 Bedrooms - ₹3,000/day</option>
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-12 mb-3">
-                <label for="roomtype" class="form-label">Room Type *</label>
-                <select class="form-select" id="roomtype" name="roomtype" required>
-                  <option value="">Select Room Type</option>
-                  <option value="Full Villa">Full Villa (3 Bedrooms)</option>
-                  <option value="1 Bedroom">1 Bedroom</option>
-                  <option value="2 Bedrooms">2 Bedrooms</option>
-                </select>
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <label for="purpose" class="form-label">Purpose of Stay *</label>
+                  <select class="form-select" id="purpose" name="purpose" required>
+                    <option value="">Select Purpose</option>
+                    <option value="Family Vacation">Family Vacation</option>
+                    <option value="Corporate Stay">Corporate Stay</option>
+                    <option value="Birthday Party">Birthday Party</option>
+                    <option value="Wedding Function">Wedding Function</option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-12 mb-3">
-                <label for="purpose" class="form-label">Purpose of Stay *</label>
-                <select class="form-select" id="purpose" name="purpose" required>
-                  <option value="">Select Purpose</option>
-                  <option value="Family Vacation">Family Vacation</option>
-                  <option value="Corporate Stay">Corporate Stay</option>
-                  <option value="Birthday Party">Birthday Party</option>
-                  <option value="Wedding Function">Wedding Function</option>
-                  <option value="Others">Others</option>
-                </select>
+              <div class="mb-3">
+                <label for="message" class="form-label">Special Requests or Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell us any special requirements..."></textarea>
               </div>
-            </div>
 
-            <div class="mb-3">
-              <label for="message" class="form-label">Special Requests or Message</label>
-              <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell us any special requirements..."></textarea>
-            </div>
+              <div class="booking-summary mb-3">
+                <h5>Booking Summary</h5>
+                <p><strong>Days:</strong> <span id="summaryDays">-</span></p>
+                <p><strong>Price per day:</strong> <span id="summaryPrice">-</span></p>
+                <p><strong>Total Amount:</strong> ₹<span id="summaryTotal">0</span></p>
+              </div>
 
-            <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" id="terms" name="terms" required />
-              <label class="form-check-label" for="terms">
-                I agree to the terms and conditions *
-              </label>
-            </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="terms" name="terms" required />
+                <label class="form-check-label" for="terms">
+                  I agree to the terms and conditions *
+                </label>
+              </div>
 
-            <button type="submit" class="btn btn-success btn-lg w-100">
-              <i class="fas fa-paper-plane me-2"></i>Submit Booking Request
-            </button>
-          </form>
+              <button type="submit" class="btn btn-success btn-lg w-100">
+                <i class="fas fa-paper-plane me-2"></i>Book Via WhatsApp
+              </button>
+            </form>
+          </div>
+
+          <!-- Booking Calendar Display -->
+          <div class="booking-calendar mt-5">
+            <h4 class="text-white mb-3">Availability Calendar</h4>
+            <div class="calendar-legend mb-3">
+              <span class="legend-item"><span class="legend-available"></span> Available</span>
+              <span class="legend-item"><span class="legend-booked"></span> Booked</span>
+              <span class="legend-item"><span class="legend-today"></span> Today</span>
+            </div>
+            <div id="calendarContainer"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -320,7 +348,7 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
             <a href="https://www.instagram.com" class="social-icon" target="_blank">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="https://www.whatsapp.com" class="social-icon" target="_blank">
+            <a href="https://wa.me/919440048833" class="social-icon" target="_blank">
               <i class="fab fa-whatsapp"></i>
             </a>
             <a href="https://www.youtube.com" class="social-icon" target="_blank">
@@ -342,49 +370,9 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
 
   <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Smooth scrolling script -->
-  <script>
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          
-          // Close mobile menu if open
-          const navbarToggler = document.querySelector('.navbar-toggler');
-          if (navbarToggler.offsetParent !== null) {
-            navbarToggler.click();
-          }
-        }
-      });
-    });
-
-    // Active nav link on scroll
-    window.addEventListener('scroll', function() {
-      let current = '';
-      const sections = document.querySelectorAll('section');
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 200) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('active');
-        }
-      });
-    });
-  </script>
+  <!-- Flatpickr for date picker -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- Booking System Script -->
+  <script src="booking-system.js"></script>
 </body>
 </html>
