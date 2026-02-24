@@ -21,9 +21,9 @@ body {
 }
 
 .navbar-logo {
-  height: 50px;
+  height: 5px;
   width: auto;
-  border-radius: 50%;
+  border-radius: 5%;
 }
 
 .brand-text {
