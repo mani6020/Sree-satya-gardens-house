@@ -3,49 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sree satya garden house</title>
-
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
-  <!-- Flatpickr for date picker -->
+  <title>Sree Satya Garden House</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- navigation -->
+
+  <!-- NAVIGATION -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-      <!-- Logo -->
       <a class="navbar-brand d-flex align-items-center" href="#home">
         <i class="fas fa-leaf text-success me-2" style="font-size: 2rem;"></i>
         <span class="brand-text">SREE SATYA GARDEN HOUSE</span>
       </a>
-      
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainNav"
-        aria-controls="mainNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="#location">Location</a></li>
           <li class="nav-item"><a class="nav-link" href="#booking">Booking</a></li>
@@ -56,51 +37,55 @@
     </div>
   </nav>
 
-  <!-- hero/banner -->
-  <header id="home"
-    class="bg-light text-white text-center"
-    style="background: url('15.jpeg') center/cover no-repeat; height: 80vh;"
-  >
-    <div class="d-flex h-100 align-items-center justify-content-center">
-      <div>
-        <h1 class="display-4">Welcome to Sree Satya Garden House</h1>
-        <p class="lead">
-          Sree Satya Garden House is a peaceful and spacious 3-bedroom garden villa located near Rajahmundry. Surrounded by lush greenery, fruit trees, and flowering plants, our property offers the perfect blend of comfort and nature.
-
-Designed for comfort, privacy, and relaxation, our duplex home combines modern amenities with the beauty of nature — giving you a refreshing stay experience close to the city yet away from the noise.
-
-📍 Ideal for families, parties, and corporate stays.
+  <!-- HERO SECTION WITH BACKGROUND SLIDESHOW -->
+  <header id="home" class="hero-header">
+    <div class="hero-slideshow">
+      <div class="hero-slide active" style="background-image: url('1.jpeg');"></div>
+      <div class="hero-slide" style="background-image: url('12.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('14.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('15.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('9.jpg');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <button class="hero-arrow hero-arrow-prev" id="heroPrev"><i class="fas fa-chevron-left"></i></button>
+    <button class="hero-arrow hero-arrow-next" id="heroNext"><i class="fas fa-chevron-right"></i></button>
+    <div class="hero-dots" id="heroDots"></div>
+    <div class="hero-content">
+      <div class="hero-text-box">
+        <h1 class="hero-title">Welcome to Sree Satya Garden House</h1>
+        <p class="hero-desc">
+          A peaceful and spacious 3-bedroom garden villa near Rajahmundry. Surrounded by lush greenery,
+          fruit trees, and flowering plants &mdash; the perfect blend of comfort and nature.<br><br>
+          <span class="hero-tag">📍 Ideal for families, parties, and corporate stays.</span>
         </p>
-        <a href="#booking" class="btn btn-lg btn-success">Book Now</a>
+        <a href="#booking" class="btn btn-hero btn-lg">Book Now</a>
       </div>
     </div>
   </header>
 
-  <!-- about section -->
+  <!-- ABOUT SECTION -->
   <section id="about" class="py-5">
     <div class="container">
       <h2 class="section-title">About Us</h2>
       <div class="row">
         <div class="col-md-6">
-          <img src="about.jpg" alt="Sree Satya Garden House" class="img-fluid rounded shadow" onerror="this.src='https://via.placeholder.com/400x300?text=Sree+Satya+Garden+House'" />
+          <img src="about.jpg" alt="Sree Satya Garden House" class="img-fluid rounded shadow"
+            onerror="this.src='https://via.placeholder.com/400x300?text=Sree+Satya+Garden+House'" />
         </div>
         <div class="col-md-6">
           <h3>Welcome to Sree Satya Garden House</h3>
           <p>A peaceful and premium garden stay located in Rajahmundry, designed for families, corporate guests, and private gatherings.</p>
-          
           <p>Surrounded by lush greenery, fruit trees, and flowering plants, our spacious 3-bedroom duplex offers the perfect balance of comfort, privacy, and natural beauty.</p>
-
           <h4 class="mt-4">🏡 What Makes Us Special</h4>
           <ul class="about-list">
             <li><i class="fas fa-check-circle text-success"></i> Spacious 3 Bedroom Duplex</li>
-            <li><i class="fas fa-check-circle text-success"></i> Large Private Garden with Fruit & Flowering Trees</li>
-            <li><i class="fas fa-check-circle text-success"></i> Elegant Living Hall & Modern Kitchen</li>
+            <li><i class="fas fa-check-circle text-success"></i> Large Private Garden with Fruit &amp; Flowering Trees</li>
+            <li><i class="fas fa-check-circle text-success"></i> Elegant Living Hall &amp; Modern Kitchen</li>
             <li><i class="fas fa-check-circle text-success"></i> Dedicated Pooja Room with Lord Krishna</li>
-            <li><i class="fas fa-check-circle text-success"></i> Safe & Peaceful Location</li>
+            <li><i class="fas fa-check-circle text-success"></i> Safe &amp; Peaceful Location</li>
             <li><i class="fas fa-check-circle text-success"></i> Ample Parking Space</li>
             <li><i class="fas fa-check-circle text-success"></i> Ideal for Monthly Corporate Stays</li>
           </ul>
-
           <h4 class="mt-4">🌿 Our Commitment</h4>
           <ul class="about-list">
             <li><i class="fas fa-check text-success"></i> Cleanliness</li>
@@ -114,44 +99,105 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
     </div>
   </section>
 
-  <!-- services section -->
+  <!-- GALLERY SECTION -->
+  <section id="gallery" class="py-5 gallery-section">
+    <div class="container">
+      <h2 class="section-title text-center">Our Gallery</h2>
+      <p class="text-center text-muted mb-4">Click on any image to view full screen</p>
+
+      <!-- Filter Buttons -->
+      <div class="gallery-filters mb-4 text-center">
+        <button class="gallery-filter-btn active" data-filter="all">All</button>
+        <button class="gallery-filter-btn" data-filter="exterior">Exterior</button>
+        <button class="gallery-filter-btn" data-filter="bedroom">Rooms</button>
+        <button class="gallery-filter-btn" data-filter="garden">Garden</button>
+        <button class="gallery-filter-btn" data-filter="events">Events</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item" data-category="exterior" data-caption="Exterior View">
+          <img src="2.jpg" alt="Exterior View" onerror="this.src='https://picsum.photos/seed/ext1/600/400'">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Exterior View</span></div>
+        </div>
+        <div class="gallery-item" data-category="garden" data-caption="Garden Area">
+          <img src="3.jpg" alt="Garden Area" onerror="this.src='https://picsum.photos/seed/grd1/600/400'">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Garden Area</span></div>
+        </div>
+        <div class="gallery-item" data-category="bedroom" data-caption="Master Bedroom">
+          <img src="5.jpg" alt="Master Bedroom" onerror="this.src='https://picsum.photos/seed/bed1/600/400'">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Master Bedroom</span></div>
+        </div>
+        <div class="gallery-item" data-category="bedroom" data-caption="Guest Bedroom">
+          <img src="6.jpg" alt="Guest Bedroom" onerror="this.src='https://picsum.photos/seed/bed2/600/400'">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Guest Bedroom</span></div>
+        </div>
+        <div class="gallery-item" data-category="exterior" data-caption="Front View">
+          <img src="7.jpeg" alt="Front View" onerror="this.src='https://picsum.photos/seed/ext2/600/400'">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Front View</span></div>
+        </div>
+        <div class="gallery-item" data-category="garden" data-caption="Garden Path">
+          <img src="8.jpg" alt="Garden Path" onerror="this.src='https://picsum.photos/seed/grd2/600/400'">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Garden Path</span></div>
+        </div>
+        <div class="gallery-item" data-category="events" data-caption="Birthday Party Setup">
+          <img src="11.jpg" alt="Birthday Party" onerror="this.src='https://picsum.photos/seed/evt1/600/400'">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Birthday Party</span></div>
+        </div>
+        <div class="gallery-item" data-category="events" data-caption="Function Area">
+          <img src="9.jpg" alt="Function Area" onerror="this.src='https://picsum.photos/seed/evt2/600/400'">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Function Area</span></div>
+        </div>
+        <div class="gallery-item" data-category="bedroom" data-caption="Living Hall">
+          <img src="12.jpg" alt="Living Hall" onerror="this.src='https://picsum.photos/seed/liv1/600/400'">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Living Hall</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-img-wrap">
+      <img id="lightboxImg" src="" alt="" />
+    </div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
+  <!-- SERVICES SECTION -->
   <section id="services" class="py-5 bg-light">
     <div class="container">
       <h2 class="section-title text-center">Our Services</h2>
       <div class="row">
         <div class="col-md-6 mb-4">
           <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-home"></i>
-            </div>
+            <div class="service-icon"><i class="fas fa-home"></i></div>
             <h4>Guest House</h4>
             <p>Comfortable and spacious accommodations perfect for families and corporate guests looking for a serene getaway.</p>
           </div>
         </div>
         <div class="col-md-6 mb-4">
           <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-birthday-cake"></i>
-            </div>
+            <div class="service-icon"><i class="fas fa-birthday-cake"></i></div>
             <h4>Birthday Parties</h4>
             <p>Celebrate your special day in our beautiful garden space with dedicated arrangements and amenities.</p>
           </div>
         </div>
         <div class="col-md-6 mb-4">
           <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-wine-glass-alt"></i>
-            </div>
+            <div class="service-icon"><i class="fas fa-wine-glass-alt"></i></div>
             <h4>Kitty Parties</h4>
             <p>Perfect venue for kitty parties and social gatherings with privacy and comfortable facilities.</p>
           </div>
         </div>
         <div class="col-md-6 mb-4">
           <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-ring"></i>
-            </div>
-            <h4>Functions & Events</h4>
+            <div class="service-icon"><i class="fas fa-ring"></i></div>
+            <h4>Functions &amp; Events</h4>
             <p>All types of functions and celebrations are welcome at our beautiful garden venue.</p>
           </div>
         </div>
@@ -159,7 +205,7 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
     </div>
   </section>
 
-  <!-- Location/Map section -->
+  <!-- LOCATION SECTION -->
   <section id="location" class="py-5">
     <div class="container">
       <h2 class="section-title text-center">Our Location</h2>
@@ -174,37 +220,26 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
               Padmavathi Nagar<br>
               Rajamahendravaram, Andhra Pradesh 533106
             </p>
-            <p class="mt-3">
-              <strong>📞 Contact:</strong> <a href="tel:9440048833">9440048833</a>
-            </p>
-            <p class="mt-2">
-              <strong>📧 Email:</strong> <a href="mailto:info@sreesatyagardenhouse.com">info@sreesatyagardenhouse.com</a>
-            </p>
+            <p class="mt-3"><strong>📞 Contact:</strong> <a href="tel:9440048833">9440048833</a></p>
+            <p class="mt-2"><strong>📧 Email:</strong> <a href="mailto:info@sreesatyagardenhouse.com">info@sreesatyagardenhouse.com</a></p>
           </div>
         </div>
         <div class="col-md-6">
-          <iframe
-            class="gmap-iframe"
+          <iframe class="gmap-iframe"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.6562830832!2d81.7870949!3d17.0219171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a2e5c6c9d7f5555%3A0x4e8d9f8c7b5a3c2d!2sRajamahendravaram!5e0!3m2!1sen!2sin!4v1676977973589"
-            width="100%"
-            height="400"
-            style="border: 0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+            width="100%" height="400" style="border: 0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Booking Form Section -->
+  <!-- BOOKING SECTION -->
   <section id="booking" class="py-5 bg-primary text-white">
     <div class="container">
       <h2 class="section-title text-center text-white">Book Your Stay</h2>
       <div class="row justify-content-center">
         <div class="col-md-10">
-          <!-- Booking Form -->
           <div class="booking-form-container">
             <form id="bookingForm" class="booking-form">
               <div class="row">
@@ -217,7 +252,6 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
                   <input type="email" class="form-control" id="email" name="email" required />
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="phone" class="form-label">Phone Number *</label>
@@ -228,7 +262,6 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
                   <input type="number" class="form-control" id="people" name="guests" min="1" max="20" required />
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="checkin" class="form-label">Check-in Date *</label>
@@ -239,11 +272,9 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
                   <input type="text" class="form-control" id="checkout" name="checkout" placeholder="Select date" required />
                 </div>
               </div>
-
               <div class="alert alert-info" id="availabilityAlert" style="display:none;">
                 <i class="fas fa-info-circle"></i> <strong>Availability Status:</strong> <span id="availabilityText"></span>
               </div>
-
               <div class="row">
                 <div class="col-md-12 mb-3">
                   <label for="roomtype" class="form-label">Room Type *</label>
@@ -255,7 +286,6 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
                   </select>
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-md-12 mb-3">
                   <label for="purpose" class="form-label">Purpose of Stay *</label>
@@ -269,33 +299,25 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
                   </select>
                 </div>
               </div>
-
               <div class="mb-3">
                 <label for="message" class="form-label">Special Requests or Message</label>
                 <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell us any special requirements..."></textarea>
               </div>
-
               <div class="booking-summary mb-3">
                 <h5>Booking Summary</h5>
                 <p><strong>Days:</strong> <span id="summaryDays">-</span></p>
                 <p><strong>Price per day:</strong> <span id="summaryPrice">-</span></p>
                 <p><strong>Total Amount:</strong> ₹<span id="summaryTotal">0</span></p>
               </div>
-
               <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="terms" name="terms" required />
-                <label class="form-check-label" for="terms">
-                  I agree to the terms and conditions *
-                </label>
+                <label class="form-check-label" for="terms">I agree to the terms and conditions *</label>
               </div>
-
               <button type="submit" class="btn btn-success btn-lg w-100">
                 <i class="fas fa-paper-plane me-2"></i>Book Via WhatsApp
               </button>
             </form>
           </div>
-
-          <!-- Booking Calendar Display -->
           <div class="booking-calendar mt-5">
             <h4 class="text-white mb-3">Availability Calendar</h4>
             <div class="calendar-legend mb-3">
@@ -310,7 +332,7 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
     </div>
   </section>
 
-  <!-- contact section -->
+  <!-- CONTACT SECTION -->
   <section id="contact" class="py-5 bg-light">
     <div class="container">
       <h2 class="section-title text-center">Contact Us</h2>
@@ -337,30 +359,21 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
           </div>
         </div>
       </div>
-
       <div class="row mt-5">
         <div class="col-md-12">
           <h4 class="text-center mb-4">Connect With Us</h4>
           <div class="d-flex justify-content-center gap-4">
-            <a href="https://www.facebook.com" class="social-icon" target="_blank">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com" class="social-icon" target="_blank">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/919440048833" class="social-icon" target="_blank">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://www.youtube.com" class="social-icon" target="_blank">
-              <i class="fab fa-youtube"></i>
-            </a>
+            <a href="https://www.facebook.com" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/919440048833" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.youtube.com" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- footer -->
+  <!-- FOOTER -->
   <footer class="bg-dark text-center text-white py-4">
     <div class="container">
       <p class="mb-2">&copy; 2026 Sree Satya Garden House. All Rights Reserved.</p>
@@ -368,11 +381,9 @@ Designed for comfort, privacy, and relaxation, our duplex home combines modern a
     </div>
   </footer>
 
-  <!-- Bootstrap JS bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Flatpickr for date picker -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <!-- Booking System Script -->
   <script src="booking-system.js"></script>
+  <script src="gallery.js"></script>
 </body>
 </html>
