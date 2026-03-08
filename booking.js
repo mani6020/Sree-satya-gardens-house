@@ -1,329 +1,292 @@
-// Booking system with slot management and WhatsApp integration
-class BookingSystem {
-  constructor() {
-    this.phoneNumber = '919440048833'; // WhatsApp number with country code
-    this.bookings = this.loadBookings();
-    this.initializeBookingSystem();
-  }
+// Booking System JavaScript
 
-  // Load bookings from localStorage
-  loadBookings() {
-    const saved = localStorage.getItem('bookings');
-    return saved ? JSON.parse(saved) : [];
-  }
+// Initialize date pickers
+const checkinInput = document.getElementById('checkin');
+const checkoutInput = document.getElementById('checkout');
 
-  // Save bookings to localStorage
-  saveBookings() {
-    localStorage.setItem('bookings', JSON.stringify(this.bookings));
-  }
-
-  // Initialize the booking system
-  initializeBookingSystem() {
-    this.setupDatePickers();
-    this.setupFormSubmission();
-    this.renderCalendar();
-    this.setupPriceCalculation();
-  }
-
-  // Setup Flatpickr date pickers
-  setupDatePickers() {
-    const today = new Date();
-    
-    // Check-in date picker
-    flatpickr('#checkin', {
-      minDate: today,
-      dateFormat: 'Y-m-d',
-      onChange: (selectedDates) => {
-        this.updateAvailability();
-        this.calculatePrice();
+if (checkinInput && checkoutInput) {
+  // Check-in date picker
+  flatpickr(checkinInput, {
+    minDate: new Date(),
+    dateFormat: 'Y-m-d',
+    onChange: function(selectedDates) {
+      if (selectedDates.length > 0) {
+        checkinInput.classList.remove('is-invalid');
+        // Set minimum checkout date to one day after check-in
+        const minCheckoutDate = new Date(selectedDates[0]);
+        minCheckoutDate.setDate(minCheckoutDate.getDate() + 1);
+        flatpickr(checkoutInput, {
+          minDate: minCheckoutDate,
+          dateFormat: 'Y-m-d',
+        });
+        updateBookingSummary();
       }
+    }
+  });
+
+  // Check-out date picker
+  flatpickr(checkoutInput, {
+    minDate: new Date(new Date().setDate(new Date().getDate() + 1)),
+    dateFormat: 'Y-m-d',
+    onChange: function(selectedDates) {
+      if (selectedDates.length > 0) {
+        checkoutInput.classList.remove('is-invalid');
+        updateBookingSummary();
+      }
+    }
+  });
+}
+
+// Form validation with red borders
+const bookingForm = document.getElementById('bookingForm');
+const requiredFields = ['name', 'email', 'phone', 'people', 'checkin', 'checkout', 'roomtype', 'purpose', 'terms'];
+
+function validateField(fieldId) {
+  const field = document.getElementById(fieldId);
+  if (field) {
+    if (!field.value || (field.type === 'checkbox' && !field.checked)) {
+      field.classList.add('is-invalid');
+      return false;
+    } else {
+      field.classList.remove('is-invalid');
+      return true;
+    }
+  }
+  return true;
+}
+
+function validateBookingForm() {
+  let isValid = true;
+  requiredFields.forEach(fieldId => {
+    if (!validateField(fieldId)) {
+      isValid = false;
+    }
+  });
+  return isValid;
+}
+
+// Real-time validation on input change
+requiredFields.forEach(fieldId => {
+  const field = document.getElementById(fieldId);
+  if (field) {
+    field.addEventListener('change', () => {
+      validateField(fieldId);
+      updateBookingSummary();
     });
 
-    // Check-out date picker
-    flatpickr('#checkout', {
-      minDate: today,
-      dateFormat: 'Y-m-d',
-      onChange: (selectedDates) => {
-        this.updateAvailability();
-        this.calculatePrice();
-      }
+    field.addEventListener('blur', () => {
+      validateField(fieldId);
     });
+
+    if (field.type !== 'checkbox') {
+      field.addEventListener('input', () => {
+        if (field.value) {
+          field.classList.remove('is-invalid');
+        }
+        updateBookingSummary();
+      });
+    }
   }
+});
 
-  // Calculate number of days and total price
-  calculatePrice() {
-    const checkin = document.getElementById('checkin').value;
-    const checkout = document.getElementById('checkout').value;
-    const roomType = document.getElementById('roomtype').value;
+// Update booking summary
+function updateBookingSummary() {
+  const name = document.getElementById('name').value || '-';
+  const guests = document.getElementById('people').value || '-';
+  const checkin = document.getElementById('checkin').value || '-';
+  const checkout = document.getElementById('checkout').value || '-';
+  const roomtype = document.getElementById('roomtype').value || '-';
+  const purpose = document.getElementById('purpose').value || '-';
 
-    if (!checkin || !checkout || !roomType) return;
+  document.getElementById('summarytype').textContent = name;
+  document.getElementById('summaryguest').textContent = guests;
+  document.getElementById('summarydate').textContent = checkin;
+  
+  // For checkout date display
+  const checkoutSpan = document.querySelectorAll('[id="summarydate"]')[1];
+  if (checkoutSpan) {
+    checkoutSpan.textContent = checkout;
+  }
+  
+  document.getElementById('summaryroomtype').textContent = roomtype;
+  document.getElementById('summarystay').textContent = purpose;
+}
 
-    const checkInDate = new Date(checkin);
-    const checkOutDate = new Date(checkout);
+// Form submission
+if (bookingForm) {
+  bookingForm.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-    if (checkOutDate <= checkInDate) {
-      document.getElementById('summaryDays').textContent = '-';
-      document.getElementById('summaryTotal').textContent = '0';
+    // Validate all fields
+    if (!validateBookingForm()) {
+      alert('❌ Please fill all required fields (marked with *)');
       return;
     }
 
-    const days = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
-    
-    // Price per room type
-    const prices = {
-      'Full Villa (3 Bedrooms)': 5000,
-      '1 Bedroom': 1500,
-      '2 Bedrooms': 3000
+    // Get form data
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      guests: document.getElementById('people').value,
+      checkin: document.getElementById('checkin').value,
+      checkout: document.getElementById('checkout').value,
+      roomtype: document.getElementById('roomtype').value,
+      purpose: document.getElementById('purpose').value,
+      message: document.getElementById('message').value
     };
 
-    const pricePerDay = prices[roomType] || 0;
-    const totalPrice = days * pricePerDay;
-
-    document.getElementById('summaryDays').textContent = days;
-    document.getElementById('summaryPrice').textContent = '₹' + pricePerDay.toLocaleString();
-    document.getElementById('summaryTotal').textContent = totalPrice.toLocaleString();
-  }
-
-  // Setup price calculation on room type change
-  setupPriceCalculation() {
-    document.getElementById('roomtype').addEventListener('change', () => {
-      this.calculatePrice();
-    });
-  }
-
-  // Check availability
-  isAvailable(checkin, checkout, roomType) {
-    const checkInDate = new Date(checkin);
-    const checkOutDate = new Date(checkout);
-
-    return !this.bookings.some(booking => {
-      const bookingCheckin = new Date(booking.checkin);
-      const bookingCheckout = new Date(booking.checkout);
-
-      // Check if there's any overlap
-      const hasOverlap = checkInDate < bookingCheckout && checkOutDate > bookingCheckin;
-      return hasOverlap && booking.roomtype === roomType;
-    });
-  }
-
-  // Update availability status
-  updateAvailability() {
-    const checkin = document.getElementById('checkin').value;
-    const checkout = document.getElementById('checkout').value;
-    const roomType = document.getElementById('roomtype').value;
-    const alertDiv = document.getElementById('availabilityAlert');
-
-    if (!checkin || !checkout || !roomType) {
-      alertDiv.style.display = 'none';
+    // Validate phone number format (10 digits for Indian numbers)
+    if (!/^\d{10}$/.test(formData.phone)) {
+      alert('❌ Please enter a valid 10-digit phone number');
+      document.getElementById('phone').classList.add('is-invalid');
       return;
     }
 
-    const available = this.isAvailable(checkin, checkout, roomType);
-    alertDiv.style.display = 'block';
-
-    if (available) {
-      alertDiv.className = 'alert alert-success';
-      document.getElementById('availabilityText').textContent = '✓ This room is available for your selected dates!';
-    } else {
-      alertDiv.className = 'alert alert-danger';
-      document.getElementById('availabilityText').textContent = '✗ This room is not available for the selected dates. Please choose different dates.';
+    // Validate email format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      alert('❌ Please enter a valid email address');
+      document.getElementById('email').classList.add('is-invalid');
+      return;
     }
-  }
 
-  // Format date for display
-  formatDate(date) {
-    return new Date(date).toLocaleDateString('en-IN', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  }
-
-  // Setup form submission
-  setupFormSubmission() {
-    document.getElementById('bookingForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        guests: document.getElementById('people').value,
-        checkin: document.getElementById('checkin').value,
-        checkout: document.getElementById('checkout').value,
-        roomtype: document.getElementById('roomtype').value,
-        purpose: document.getElementById('purpose').value,
-        message: document.getElementById('message').value,
-        bookingDate: new Date().toISOString()
-      };
-
-      // Check final availability
-      if (!this.isAvailable(formData.checkin, formData.checkout, formData.roomtype)) {
-        alert('⚠️ Sorry, this room is no longer available for the selected dates. Please choose different dates.');
-        return;
-      }
-
-      // Add to bookings (tentative until confirmed)
-      this.bookings.push(formData);
-      this.saveBookings();
-
-      // Send to WhatsApp
-      this.sendToWhatsApp(formData);
-
-      // Reset form
-      document.getElementById('bookingForm').reset();
-      this.calculatePrice();
-      this.renderCalendar();
-
-      alert('✓ Booking request sent! You will receive a confirmation message on WhatsApp shortly.');
-    });
-  }
-
-  // Send booking details to WhatsApp
-  sendToWhatsApp(formData) {
-    const message = this.generateBookingMessage(formData);
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${this.phoneNumber}?text=${encodedMessage}`;
-
-    // Open WhatsApp in new tab
-    window.open(whatsappUrl, '_blank');
-  }
-
-  // Generate booking message for WhatsApp
-  generateBookingMessage(formData) {
-    const days = Math.ceil(
-      (new Date(formData.checkout) - new Date(formData.checkin)) / (1000 * 60 * 60 * 24)
+    // Create WhatsApp message
+    const whatsappMessage = encodeURIComponent(
+      `*Booking Request - Sree Satya Garden House*\n\n` +
+      `*Guest Details:*\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Number of Guests: ${formData.guests}\n\n` +
+      `*Booking Details:*\n` +
+      `Check-in: ${formData.checkin}\n` +
+      `Check-out: ${formData.checkout}\n` +
+      `Room Type: ${formData.roomtype}\n` +
+      `Purpose: ${formData.purpose}\n\n` +
+      `*Special Requests:*\n` +
+      `${formData.message || 'None'}\n\n` +
+      `Sent from Sree Satya Garden House Website`
     );
 
-    const prices = {
-      'Full Villa (3 Bedrooms)': 5000,
-      '1 Bedroom': 1500,
-      '2 Bedrooms': 3000
-    };
+    // Send via WhatsApp
+    const whatsappNumber = '919440048833'; // Indian format
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+    
+    window.open(whatsappURL, '_blank');
 
-    const pricePerDay = prices[formData.roomtype] || 0;
-    const totalPrice = days * pricePerDay;
+    // Show success message
+    alert('✅ Booking request sent! Our team will contact you shortly.');
 
-    return `
-*🏡 SREE SATYA GARDEN HOUSE - BOOKING REQUEST* 
-
-*Guest Details:*
-👤 Name: ${formData.name}
-📧 Email: ${formData.email}
-📱 Phone: ${formData.phone}
-👥 Guests: ${formData.guests}
-
-*Booking Details:*
-📅 Check-in: ${this.formatDate(formData.checkin)}
-📅 Check-out: ${this.formatDate(formData.checkout)}
-🏠 Room Type: ${formData.roomtype}
-🎯 Purpose: ${formData.purpose}
-📊 Number of Days: ${days}
-
-*Pricing:*
-💰 Rate per day: ₹${pricePerDay}
-💰 Total Amount: ₹${totalPrice}
-
-*Special Requests:*
-${formData.message || 'None'}
-
-*Please confirm this booking and proceed with payment.*
-Thank you for choosing Sree Satya Garden House! 🌿
-    `.trim();
-  }
-
-  // Render calendar with booked dates
-  renderCalendar() {
-    const container = document.getElementById('calendarContainer');
-    const today = new Date();
-    const currentMonth = today.getMonth();
-    const currentYear = today.getFullYear();
-
-    let html = '';
-
-    // Display next 3 months
-    for (let month = 0; month < 3; month++) {
-      const date = new Date(currentYear, currentMonth + month);
-      const monthName = date.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
-      
-      html += `<div class="calendar-month"><h6>${monthName}</h6><div class="calendar-grid">`;
-
-      // Get first day of month
-      const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-      const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-
-      // Empty cells
-      for (let i = 0; i < firstDay; i++) {
-        html += '<div class="calendar-day empty"></div>';
+    // Reset form
+    bookingForm.reset();
+    requiredFields.forEach(fieldId => {
+      const field = document.getElementById(fieldId);
+      if (field) {
+        field.classList.remove('is-invalid');
       }
+    });
 
-      // Date cells
-      for (let day = 1; day <= daysInMonth; day++) {
-        const cellDate = new Date(date.getFullYear(), date.getMonth(), day);
-        const isToday = cellDate.toDateString() === today.toDateString();
-        const isBooked = this.isDateBooked(cellDate);
+    // Reset summary
+    document.getElementById('summarytype').textContent = '-';
+    document.getElementById('summaryguest').textContent = '-';
+    document.getElementById('summarydate').textContent = '-';
+    document.getElementById('summaryroomtype').textContent = '-';
+    document.getElementById('summarystay').textContent = '-';
+  });
+}
 
-        let classNames = 'calendar-day';
-        if (isToday) classNames += ' today';
-        if (isBooked) classNames += ' booked';
+// Booking Calendar
+function generateCalendar() {
+  const container = document.getElementById('calendarContainer');
+  if (!container) return;
 
-        html += `<div class="${classNames}" title="${cellDate.toDateString()}">${day}</div>`;
-      }
+  container.innerHTML = '';
+  const today = new Date();
+  const months = 3; // Show 3 months
 
-      html += '</div></div>';
+  for (let i = 0; i < months; i++) {
+    const date = new Date(today.getFullYear(), today.getMonth() + i, 1);
+    const monthName = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    
+    const monthDiv = document.createElement('div');
+    monthDiv.className = 'calendar-month';
+    monthDiv.innerHTML = `<h6>${monthName}</h6>`;
+
+    const calendarGrid = document.createElement('div');
+    calendarGrid.className = 'calendar-grid';
+
+    // Day headers
+    const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    dayHeaders.forEach(day => {
+      const dayHeader = document.createElement('div');
+      dayHeader.style.fontWeight = 'bold';
+      dayHeader.style.textAlign = 'center';
+      dayHeader.style.fontSize = '0.85rem';
+      dayHeader.textContent = day;
+      calendarGrid.appendChild(dayHeader);
+    });
+
+    // Get first day of month
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+
+    // Empty cells before first day
+    for (let j = 0; j < firstDay; j++) {
+      const emptyDay = document.createElement('div');
+      emptyDay.className = 'calendar-day empty';
+      calendarGrid.appendChild(emptyDay);
     }
 
-    container.innerHTML = html;
-  }
+    // Days of month
+    const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dayDiv = document.createElement('div');
+      const cellDate = new Date(date.getFullYear(), date.getMonth(), day);
+      const isToday = cellDate.toDateString() === today.toDateString();
+      const isPast = cellDate < today;
 
-  // Check if date is booked
-  isDateBooked(date) {
-    return this.bookings.some(booking => {
-      const checkin = new Date(booking.checkin);
-      const checkout = new Date(booking.checkout);
-      return date >= checkin && date < checkout;
-    });
+      dayDiv.className = 'calendar-day';
+      dayDiv.textContent = day;
+
+      if (isToday) {
+        dayDiv.classList.add('today');
+      } else if (isPast) {
+        dayDiv.classList.add('empty');
+        dayDiv.style.opacity = '0.5';
+      } else {
+        // Random booking simulation (in real app, fetch from server)
+        const isBooked = Math.random() < 0.2;
+        if (isBooked) {
+          dayDiv.classList.add('booked');
+        }
+      }
+
+      calendarGrid.appendChild(dayDiv);
+    }
+
+    monthDiv.appendChild(calendarGrid);
+    container.appendChild(monthDiv);
   }
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  new BookingSystem();
-
-  // Smooth scrolling
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        if (navbarToggler.offsetParent !== null) {
-          navbarToggler.click();
-        }
-      }
-    });
-  });
-
-  // Active nav link on scroll
-  window.addEventListener('scroll', function() {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (pageYOffset >= sectionTop - 200) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
-    });
-  });
+// Initialize calendar on page load
+document.addEventListener('DOMContentLoaded', function() {
+  generateCalendar();
+  updateBookingSummary();
 });
+
+// Phone number input restriction (10 digits only)
+const phoneInput = document.getElementById('phone');
+if (phoneInput) {
+  phoneInput.addEventListener('input', function(e) {
+    this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+  });
+}
+
+// Guests input restriction (1-20 only)
+const guestsInput = document.getElementById('people');
+if (guestsInput) {
+  guestsInput.addEventListener('input', function(e) {
+    if (this.value > 20) this.value = 20;
+    if (this.value < 1) this.value = 1;
+  });
+}
