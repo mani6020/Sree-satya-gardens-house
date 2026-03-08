@@ -280,9 +280,9 @@
                   <label for="roomtype" class="form-label">Room Type *</label>
                   <select class="form-select" id="roomtype" name="roomtype" required>
                     <option value="">Select Room Type</option>
-                    <option value="Full Villa (3 Bedrooms)">Full Villa (3 Bedrooms) - ₹5,000/day</option>
-                    <option value="1 Bedroom">1 Bedroom - ₹1,500/day</option>
-                    <option value="2 Bedrooms">2 Bedrooms - ₹3,000/day</option>
+                    <option value="Full Villa (3 Bedrooms)">Full Villa (3 Bedrooms)</option>
+                    <option value="1 Bedroom">1 Bedroom</option>
+                    <option value="2 Bedrooms">2 Bedrooms</option>
                   </select>
                 </div>
               </div>
@@ -305,9 +305,12 @@
               </div>
               <div class="booking-summary mb-3">
                 <h5>Booking Summary</h5>
-                <p><strong>Days:</strong> <span id="summaryDays">-</span></p>
-                <p><strong>Price per day:</strong> <span id="summaryPrice">-</span></p>
-                <p><strong>Total Amount:</strong> ₹<span id="summaryTotal">0</span></p>
+                <p><strong>Name:</strong> <span id="summarytype">-</span></p>
+                <p><strong>No of Guest:</strong> <span id="summaryguest">-</span></p>
+                <p><strong>check-in-date:</strong> <span id="summarydate">-</span></p>
+                <p><strong>check-out-date:</strong> ₹<span id="summarydate">0</span></p>
+                <p><strong>RoomType:</strong> ₹<span id="summaryroomtype">0</span></p>
+                <p><strong>Purpose of Stay:</strong> ₹<span id="summarystay">0</span></p>
               </div>
               <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="terms" name="terms" required />
@@ -326,6 +329,7 @@
               <span class="legend-item"><span class="legend-today"></span> Today</span>
             </div>
             <div id="calendarContainer"></div>
+            <a class="btn btn-primary ms-lg-3" href="#booking">Book Now</a>
           </div>
         </div>
       </div>
